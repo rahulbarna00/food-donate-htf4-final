@@ -68,8 +68,8 @@ const MapComponent = () => {
   };
 
   return (
-    <div>
-      <div ref={mapContainerRef} style={{ height: '100vh', width: '100vw'}}></div>
+    <div className='w-[50vw] h-[470px]'>
+      <div ref={mapContainerRef} className='w-full h-full rounded-[15px] border-[2px] border-[#C4C4C4]'></div>
       {/* <div>
         Latitude: {currentLocation.lat}, Longitude: {currentLocation.lng}
       </div> */}

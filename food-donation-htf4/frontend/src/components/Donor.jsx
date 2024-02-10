@@ -39,19 +39,18 @@ const DonationForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{marginTop: "20px"}}>
-      <h1 style={{textAlign: "center"}}>Donate Your food</h1>
-      <Box
+    <form onSubmit={handleSubmit} style={{marginTop: "20px"}} className='flex flex-col'>
+      <Box className='gap-[20px]'
         sx={{
           display: 'flex',
-          flexDirection: 'column',
+          flexDirection: 'row',
           gap: '1rem',
-          maxWidth: '300px',
           margin: '0 auto', // Center the form horizontally
         }}
       >
-    
+        <div className='w-[50%] max-h-[400px] flex flex-col gap-[1rem] bg-[#f5f5f5] py-[20px] px-[20px] rounded-[15px]'>
         <TextField
+          className='bg-white'
           label="Food Name"
           name="foodname"
           value={donationData.foodname}
@@ -59,6 +58,7 @@ const DonationForm = () => {
           variant="outlined"
         />
         <TextField
+                  className='bg-white'
           label="Description"
           name="description"
           value={donationData.description}
@@ -66,6 +66,7 @@ const DonationForm = () => {
           variant="outlined"
         />
         <TextField
+                  className='bg-white'
           label="Phone"
           name="phone"
           value={donationData.phone}
@@ -73,6 +74,7 @@ const DonationForm = () => {
           variant="outlined"
         />
         <TextField
+                  className='bg-white'
           label="Donor Name"
           name="donorname"
           value={donationData.donorname}
@@ -82,6 +84,7 @@ const DonationForm = () => {
         <Button type="submit" variant="contained" color="primary">
           Submit
         </Button>
+        </div>
         <Location />
       </Box>
     </form>
