@@ -163,6 +163,43 @@ app.post('/donorformsubmission', async (req, res) => {
 });
 
 
+app.get('/donationsGet', async (req, res) => {
+    try {
+        const alldata = await fetch('https://ap-south-1.aws.neurelo.com/custom/show_donations', {
+            headers: {
+                "X-API-KEY": NeurosNeureloAPI
+            }
+        });
+
+        const data = await alldata.json();
+
+        res.json(data.data.cursor.firstBatch);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+})
+
+
+app.patch('/ngoIDupdate', async (req, res) => {
+    const {objectID, ngokaID} = req.body;
+    // console.log(ngokaID, objectID);
+    
+    const updatedNGO = await fetch(`https://ap-south-1.aws.neurelo.com/rest/foodDonor/${objectID}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-API-KEY': NeurosNeureloAPI
+        },
+        body: JSON.stringify({"ngo_id": ngokaID})
+    });
+    const responseData = await updatedNGO.json();
+    console.log(responseData);
+    res.status(200).json(responseData);
+
+});
+
+
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
