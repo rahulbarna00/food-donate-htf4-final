@@ -1,4 +1,8 @@
 /*Component of Home and related to home CSS*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 
 * {
   margin: 0;
@@ -118,7 +122,7 @@ nav {
   font-weight: 600;
   color: white;
   transition: 0.2s;
-
+  display: flex;
   align-items: center;
   justify-content: center;
 }
@@ -183,7 +187,12 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: 0.5s ease-in-out;
   
+}
+
+.watch-video-button:hover{
+  color: white;
 }
 
 .watch-video-button svg {

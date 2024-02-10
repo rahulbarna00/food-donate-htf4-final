@@ -68,7 +68,7 @@ const Contact = () => {
   return (
     <div className="contact-page">
       <div className="contact-page-wrapper">
-        <h1 className="primary-heading">Have a Question in Mind?</h1>
+        <h1 className="flex text-[1rem] py-[50px]">Have a Question in Mind?</h1>
         <h1 className="primary-heading">Let Us Help You by answering queries about this platform</h1>
         {/* Input for email */}
         <label>Email</label>
