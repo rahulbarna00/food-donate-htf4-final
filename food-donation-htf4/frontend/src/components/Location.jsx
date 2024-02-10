@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import './location.css';
+import customMarkerIcon from '../images/download.png';
 
 const MapComponent = () => {
   const mapContainerRef = useRef(null);
@@ -12,24 +12,49 @@ const MapComponent = () => {
     mapRef.current = L.map(mapContainerRef.current).setView([0, 0], 13);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors'
+      attribution: false, // Disable default attribution control
     }).addTo(mapRef.current);
 
     mapRef.current.locate({ setView: true, maxZoom: 16 });
 
+    const mainMarkerIcon = L.icon({
+      iconUrl: customMarkerIcon,
+      iconSize: [25, 41], // Fixed icon size for the main marker
+      iconAnchor: [12, 41], // Adjust anchor point if necessary
+    });
+
     const onLocationFound = (e) => {
-      if (e.latlng) {
-        const { lat, lng } = e.latlng;
-        setCurrentLocation({ lat, lng });
-
-        const radius = e.accuracy / 2;
-
-        L.marker(e.latlng).addTo(mapRef.current)
-          .bindPopup(`You are within ${radius} meters from this point`).openPopup();
-
-        L.circle(e.latlng, radius).addTo(mapRef.current);
-      }
+      const { lat, lng } = e.latlng;
+      setCurrentLocation({ lat, lng });
+    
+      const radius = (e.accuracy / 2).toFixed(2);
+    
+      setTimeout(() => {
+        // Add the main marker with the custom icon
+        L.marker(e.latlng, { icon: mainMarkerIcon }).addTo(mapRef.current)
+          .bindPopup();
+    
+        // L.circle(e.latlng, radius).addTo(mapRef.current);
+    
+        const nearbyPoints = [
+          { lat: lat + 0.011, lng: lng + 0.011 },
+          { lat: lat - 0.008, lng: lng + 0.002 },
+          { lat: lat + 0.004, lng: lng - 0.003 }
+        ];
+    
+        nearbyPoints.forEach(point => {
+          L.marker(point, {
+            icon: L.divIcon({
+              className: 'custom-div-icon',
+              html: '<div style="background-color: blue; border-radius: 50%; width: 10px; height: 10px;"></div>',
+              iconSize: [10, 10]
+            })
+          }).addTo(mapRef.current);
+        });
+      });
     };
+    
+
 
     const onLocationError = (e) => {
       alert(e.message);
@@ -46,8 +71,8 @@ const MapComponent = () => {
   }, []);
 
   return (
-    <div className='flex justify center items center '>
-      <div ref={mapContainerRef} style={{ height: '100vh', width: '100vw' }}></div>
+    <div>
+      <div ref={mapContainerRef} style={{ height: '100vh', width: '100vw'}}></div>
       {/* <div>
         Latitude: {currentLocation.lat}, Longitude: {currentLocation.lng}
       </div> */}
