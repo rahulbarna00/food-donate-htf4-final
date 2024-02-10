@@ -7,6 +7,8 @@ import Register from '../components/Register';
 import Donor from '../components/Donor';
 import Otppage from '../components/otppage';
 import Location from '../components/Location'
+import Login from '../components/Login'
+
 const routes = [
     {
         path: '/',
@@ -27,6 +29,10 @@ const routes = [
     {
         path:'location',
         element: < Location/>
+    },
+    {
+        path: '/login',
+        element: <Login/>
     }
 ]
 export default routes;
