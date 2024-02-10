@@ -132,6 +132,33 @@ app.post('/login', async(req, res) => {
 
 
 
+app.post('/donorformsubmission', async (req, res) => {
+    try {
+        const {foodname, donorname, phone, description} = req.body;
+        if(!foodname || !donorname || !phone || !description){
+            return res.status(400).json({ error: 'Please fill all the fields' });
+        }else{
+            const response = await fetch('https://ap-south-1.aws.neurelo.com/rest/foodDonor/__one', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-API-KEY": NeurosNeureloAPI
+                },
+                body: JSON.stringify({
+                    foodname: foodname,
+                    description: description,
+                    phone: phone,
+                    donorname: donorname
+                })
+            })
+            res.status(200).json({ "message": 'Donation done' });
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
