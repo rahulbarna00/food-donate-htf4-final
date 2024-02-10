@@ -6,6 +6,7 @@ import Home from '../components/Home';
 import Register from '../components/Register';
 import Donor from '../components/Donor';
 import Otppage from '../components/otppage';
+import Login from '../components/Login'
 
 const routes = [
     {
@@ -23,6 +24,10 @@ const routes = [
     {
         path: '/otp',
         element: <Otppage/>
+    },
+    {
+        path: '/login',
+        element: <Login/>
     }
 ]
 export default routes;
