@@ -7,8 +7,9 @@ import Register from '../components/Register';
 import Donor from '../components/Donor';
 import Otppage from '../components/otppage';
 import Location from '../components/Location'
-import Login from '../components/Login'
+import DonorLogin from '../components/donorLogin'
 import { Dashboard } from '../components/Dashboard';
+import NGOLogin from '../components/NGOlogin'
 
 const routes = [
     {
@@ -32,8 +33,11 @@ const routes = [
         element: < Location/>
     },
     {
-        path: '/login',
-        element: <Login/>
+        path: '/auth/donor/login',
+        element: <DonorLogin/>
+    },{
+        path:'/auth/ngo/login',
+        element:<NGOLogin/>
     },
     {
         path: '/dashboard',

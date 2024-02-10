@@ -67,11 +67,11 @@ const MapComponent = () => {
   };
 
   return (
-    <div>
-      <div ref={mapContainerRef} style={{ height: '100vh', width: '100vw'}}></div>
-      {/* <div>
-        Latitude: {currentLocation.lat}, Longitude: {currentLocation.lng}
-      </div> */}
+    <div className='w-[100vw]  flex jusity-start items-center '>
+      <div className='w-[15vw] border-2 border-red-500'>
+
+      </div>
+      <div ref={mapContainerRef} className='relative' style={{ height: '100vh', width: '85vw'}}></div>
     </div>
   );
 };
