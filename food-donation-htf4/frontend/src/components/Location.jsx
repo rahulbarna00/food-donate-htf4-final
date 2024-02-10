@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import './location.css';
 
 const MapComponent = () => {
   const mapContainerRef = useRef(null);
@@ -17,15 +18,17 @@ const MapComponent = () => {
     mapRef.current.locate({ setView: true, maxZoom: 16 });
 
     const onLocationFound = (e) => {
-      const { lat, lng } = e.latlng;
-      setCurrentLocation({ lat, lng });
+      if (e.latlng) {
+        const { lat, lng } = e.latlng;
+        setCurrentLocation({ lat, lng });
 
-      const radius = e.accuracy / 2;
+        const radius = e.accuracy / 2;
 
-      L.marker(e.latlng).addTo(mapRef.current)
-        .bindPopup(`You are within ${radius} meters from this point`).openPopup();
+        L.marker(e.latlng).addTo(mapRef.current)
+          .bindPopup(`You are within ${radius} meters from this point`).openPopup();
 
-      L.circle(e.latlng, radius).addTo(mapRef.current);
+        L.circle(e.latlng, radius).addTo(mapRef.current);
+      }
     };
 
     const onLocationError = (e) => {
@@ -43,11 +46,11 @@ const MapComponent = () => {
   }, []);
 
   return (
-    <div>
-      <div ref={mapContainerRef} style={{ height: '400px' }}></div>
-      <div>
+    <div className='flex justify center items center '>
+      <div ref={mapContainerRef} style={{ height: '100vh', width: '100vw' }}></div>
+      {/* <div>
         Latitude: {currentLocation.lat}, Longitude: {currentLocation.lng}
-      </div>
+      </div> */}
     </div>
   );
 };
