@@ -25,6 +25,7 @@ const DonationForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
     const response = await axios.post('http://localhost:5000/donorformsubmission', {
             description: donationData.description,
             foodname: donationData.foodname,

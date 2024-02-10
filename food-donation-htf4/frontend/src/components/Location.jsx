@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useRef, useState } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -31,6 +32,7 @@ const MapComponent = () => {
     const { lat, lng } = e.latlng;
     setCurrentLocation({ lat, lng });
 
+    // eslint-disable-next-line no-unused-vars
     const radius = (e.accuracy / 2).toFixed(2);
 
     setTimeout(() => {
@@ -69,9 +71,9 @@ const MapComponent = () => {
   return (
     <div>
       <div ref={mapContainerRef} style={{ height: '100vh', width: '100vw'}}></div>
-      {/* <div>
+      <div>
         Latitude: {currentLocation.lat}, Longitude: {currentLocation.lng}
-      </div> */}
+      </div>
     </div>
   );
 };
