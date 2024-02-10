@@ -20,6 +20,12 @@ import DonorDashboard from '../pages/donor/dashboard/page'
 import DonorDonate from '../pages/donor/donate/page'
 import DonorHistory from '../pages/donor/your-history/paget'
 
+
+/// ngo
+
+import NgoDashboard from '../pages/NGO/dashboard/page'
+import NgoHistory from '../pages/NGO/history/page'
+
 const routes = [
     {
         path: '/',
@@ -55,6 +61,13 @@ const routes = [
     },{
         path:'/auth/ngo/login',
         element:<NGOLogin/>
+    },{
+        path:'/ngo/dashboard',
+        element: <NgoDashboard/>
+    },
+    {
+        path:'/ngo/history',
+        element: <NgoHistory/>
     }
 ]
 export default routes;
