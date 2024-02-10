@@ -2,17 +2,15 @@
 import React, { useState } from "react";
 import '../css/auth.css';
 import {useNavigate} from 'react-router-dom'
-
+import loginAPI from '../apis/login'
 const Login = () => {
     const [email, setemail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
     const handleLogin = async () => {
         try {
-            const response = await fetch('http://localhost:5000/login', {
-                email: email,
-                password: password
-            })
+            const response = await loginAPI({email,password})
+            console.log(response)
             if(response.success){
                 navigate('/donor')
             }else{
