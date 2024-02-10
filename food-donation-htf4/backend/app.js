@@ -20,7 +20,7 @@ app.use(cookieParser());
 app.post('/verifyOTP', async (req, res) => {
     try {
         const { reqID, otp } = req.body;
-        if(otpforuser == otp){
+        if (otpforuser == otp) {
             res.json({ success: true });
         } else {
             res.json({ success: false });
@@ -110,18 +110,18 @@ app.post('/registerUser', async (req, res) => {
 // https://ap-south-1.aws.neurelo.com/rest/users?filter={"email":email, "password":password}
 
 
-app.post('/login', async(req, res) => {
+app.post('/login', async (req, res) => {
     try {
-        const {email, password} = req.body;
+        const { email, password } = req.body;
         console.log(email, password);
-        if(!email || !password){
+        if (!email || !password) {
             return res.status(400).json({ error: 'Please fill all the fields' });
-        }else{
+        } else {
             const response = await fetch(`https://ap-south-1.aws.neurelo.com/rest/users?filter={"email":${email}, "password":${password}}`);
-            if(email == response.email && password == response.password){
-                res.json({success: true});
-            }else{
-                res.json({success: false});
+            if (email == response.email && password == response.password) {
+                res.json({ success: true });
+            } else {
+                res.json({ success: false });
             }
         }
     } catch (error) {
@@ -134,10 +134,10 @@ app.post('/login', async(req, res) => {
 
 app.post('/donorformsubmission', async (req, res) => {
     try {
-        const {foodname, donorname, phone, description} = req.body;
-        if(!foodname || !donorname || !phone || !description){
+        const { foodname, donorname, phone, description } = req.body;
+        if (!foodname || !donorname || !phone || !description) {
             return res.status(400).json({ error: 'Please fill all the fields' });
-        }else{
+        } else {
             const alluserdetails = localStorage.getItem('BHOJNA_user');
             const userID = alluserdetails.id;
             const response = await fetch('https://ap-south-1.aws.neurelo.com/rest/foodDonor/__one', {
@@ -160,6 +160,63 @@ app.post('/donorformsubmission', async (req, res) => {
         console.log(error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
+});
+
+
+app.get('/donationsGet', async (req, res) => {
+    try {
+        const alldata = await fetch('https://ap-south-1.aws.neurelo.com/custom/show_donations', {
+            headers: {
+                "X-API-KEY": NeurosNeureloAPI
+            }
+        });
+
+        const data = await alldata.json();
+
+        res.json(data.data.cursor.firstBatch);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+})
+
+
+app.patch('/ngoIDupdate', async (req, res) => {
+    const { objectID, ngokaID } = req.body;
+    // console.log(ngokaID, objectID);
+
+    const updatedNGO = await fetch(`https://ap-south-1.aws.neurelo.com/rest/foodDonor/${objectID}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-API-KEY': NeurosNeureloAPI
+        },
+        body: JSON.stringify({ "ngo_id": ngokaID })
+    });
+    const responseData = await updatedNGO.json();
+   
+    const sendNGO = await fetch(`https://ap-south-1.aws.neurelo.com/rest/ngo/${ngokaID}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-API-KEY': NeurosNeureloAPI
+        }
+    });
+    const data = await sendNGO.json();
+    const from = "Neuros"
+    const to = `91${data.data.phone}`
+    const text = `${data.data.name} has accepted your request and they will be donating your food`;
+
+    async function sendSMS() {
+        await vonage.sms.send({ to, from, text })
+            .then(resp => { console.log('Message sent successfully'); console.log(resp); })
+            .catch(err => { console.log('There was an error sending the messages.'); console.error(err); });
+    }
+
+    sendSMS();
+
+    res.status(200).json(responseData);
+
 });
 
 

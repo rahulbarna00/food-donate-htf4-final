@@ -9,7 +9,8 @@ import Otppage from '../components/otppage';
 import Location from '../components/Location'
 import DonorLogin from '../components/donorLogin'
 import { Dashboard } from '../components/Dashboard';
-import NGOLogin from '../components/NGOlogin'
+import NGOLogin from '../components/NGOlogin';
+import Donation from '../components/Donation';
 
 
 
