@@ -4,6 +4,8 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Location from './Location';
+import axios from 'axios';
+import {useNavigate} from 'react-router-dom'
 
 const DonationForm = () => {
   const [donationData, setDonationData] = useState({
@@ -12,7 +14,7 @@ const DonationForm = () => {
     phone: '',
     donorname: ''
   });
-
+  const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setDonationData(prevState => ({
@@ -21,10 +23,18 @@ const DonationForm = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission, e.g., send data to backend
-    console.log(donationData);
+    const response = await axios.post('http://localhost:5000/donorformsubmission', {
+            description: donationData.description,
+            foodname: donationData.foodname,
+            phone: donationData.phone,
+            donorname: donationData.donorname
+      });
+    if(response.status===200){
+      navigate('/dashboard');
+    }
+      
   };
 
   return (
