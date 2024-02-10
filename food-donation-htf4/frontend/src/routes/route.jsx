@@ -10,7 +10,6 @@ import Location from '../components/Location'
 import DonorLogin from '../components/donorLogin'
 import { Dashboard } from '../components/Dashboard';
 import NGOLogin from '../components/NGOlogin';
-import Donation from '../components/Donation';
 
 
 
@@ -25,6 +24,8 @@ import DonorHistory from '../pages/donor/your-history/paget'
 
 import NgoDashboard from '../pages/NGO/dashboard/page'
 import NgoHistory from '../pages/NGO/history/page'
+import NgoDonation from '../pages/NGO/donations/page'
+
 
 const routes = [
     {
@@ -68,6 +69,10 @@ const routes = [
     {
         path:'/ngo/history',
         element: <NgoHistory/>
+    },
+    {
+        path:"/ngo/donation",
+        element:<NgoDonation/>
     }
 ]
 export default routes;

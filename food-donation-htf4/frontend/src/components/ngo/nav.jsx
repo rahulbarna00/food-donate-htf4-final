@@ -32,17 +32,17 @@ const Navbar = () => {
             <div className='w-full h-auto flex flex-col mt-[17px] gap-1 text-[#46494F]'>
 
 
-                <div onClick={(e) => navigate(`/donor/dashboard`)} style={pathname ? pathname.includes('dashboard') === true ? { backgroundColor: "#eeefff" } : { width: "100%" } : { width: "100%" }} className='capitalize pl-[4px] w-full py-[7px] cursor-pointer rounded-[6px] flex gap-3 items-center bg-transparent hover:bg-[#eeefff]'>
+                <div onClick={(e) => navigate(`/ngo/dashboard`)} style={pathname ? pathname.includes('dashboard') === true ? { backgroundColor: "#eeefff" } : { width: "100%" } : { width: "100%" }} className='capitalize pl-[4px] w-full py-[7px] cursor-pointer rounded-[6px] flex gap-3 items-center bg-transparent hover:bg-[#eeefff]'>
                     <img src={Dashboard} alt="asd" className='w-[19px] h-[19px]' />
                     <h2 className='flex items-center gap-3 text-[0.92rem] tracking-[0.3px] !font-[500]'>{ChangeLetters('dashboard')}</h2>
                 </div>
 
-                <div  onClick={(e) => navigate(`/donor/donate`)} style={pathname ? pathname.includes('donate') === true ? { backgroundColor: "#eeefff" } : { width: "100%" } : { width: "100%" }} className='capitalize pl-[4px] w-full py-[7px] cursor-pointer rounded-[6px] flex gap-3 items-center bg-transparent hover:bg-[#eeefff]'>
+                <div  onClick={(e) => navigate(`/ngo/donation`)} style={pathname ? pathname.includes('donation') === true ? { backgroundColor: "#eeefff" } : { width: "100%" } : { width: "100%" }} className='capitalize pl-[4px] w-full py-[7px] cursor-pointer rounded-[6px] flex gap-3 items-center bg-transparent hover:bg-[#eeefff]'>
                     <img src={DonorLogo} alt="asd" className='w-[19px] h-[19px]' />
                     <h2 className='flex items-center gap-3 text-[0.92rem] tracking-[0.3px] !font-[500]'>{ChangeLetters('donate')} </h2>
                 </div>
 
-                <div  onClick={(e) => navigate(`/donor/history`)} style={pathname ? pathname.includes('history') === true ? { backgroundColor: "#eeefff" } : { width: "100%" } : { width: "100%" }} className='capitalize pl-[4px] w-full py-[7px] cursor-pointer rounded-[6px] flex gap-3 items-center bg-transparent hover:bg-[#eeefff]'>
+                <div  onClick={(e) => navigate(`/ngo/history`)} style={pathname ? pathname.includes('history') === true ? { backgroundColor: "#eeefff" } : { width: "100%" } : { width: "100%" }} className='capitalize pl-[4px] w-full py-[7px] cursor-pointer rounded-[6px] flex gap-3 items-center bg-transparent hover:bg-[#eeefff]'>
                     <img src={History} alt="asd" className='w-[19px] h-[19px]' />
                     <h2 className='flex items-center gap-3 text-[0.92rem] tracking-[0.3px] !font-[500]'>{ChangeLetters('Your History')}</h2>
                 </div>

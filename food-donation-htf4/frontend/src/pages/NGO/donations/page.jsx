@@ -1,55 +1,23 @@
 /* eslint-disable no-unused-vars */
-import React, {useEffect, useState} from 'react'
-import '../css/donation.css'
-// array of objects
-const Donation = () => {
-
-  const [donordata, setdonordata] = useState([]);
-  const ngoIDFULL = localStorage.getItem('BHOJNA_ngo');
-
-  const ngoID = JSON.parse(ngoIDFULL);
-
-  const ngokaID = ngoID.id;
-
-  useEffect(() => {
-    const FetchDonations = async() => {
-        const response = await fetch('http://localhost:5000/donationsGet');
-        const data = await response.json();
-        setdonordata(data);
-    }
-    FetchDonations();
-  })
-
-
-  const handleAcceptance = async (objectID, ngoID) => {
-    try {
-        const response = await fetch('http://localhost:5000/ngoIDupdate', {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ objectID, ngokaID })
-        });
-
-        const responseData = await response.json();
-        
-    } catch (error) {
-        console.error('Error:', error);
-    }
-};
-
-  return (
-    <div className="donation-list">
-      {donordata.map((donation) => (
-        <div key={donation._id + donation.donorname} className="donation-card">
-          <h3>{donation.foodname}</h3>
-          <p>{donation.description}</p>
-          <p>{donation.donorname}</p>
-          <button onClick={() => handleAcceptance(donation._id.$oid)}>Accept</button>
+import React from 'react'
+import Navbar from '../../../components/ngo/nav'
+import { MoreHorizontal } from 'lucide-react'
+import DonationCOMP from '../../../components/Donation'
+const Dashboard = () => {
+    return (
+        <div className='donor_text w-[100vw] min-h-[100vh] h-[100vh] flex justify-center items-center bg-[#F6F8FA] overflow-hidden'>
+            <Navbar />
+            <div className='bg-[#FFFFFF] px-[25px] w-[82%] mt-[3vh] flex flex-col h-[97vh] rounded-l-[20px] shadow-[0px_1px_3px_0px_rgba(0,0,0,0.2)] overflow-hidden'>
+                <div className='w-full pt-[15px] flex flex-col gap-5'>
+                    <div className='flex py-[4px] gap-2 items-center'>
+                        <h1 className='text-[1.5rem] font-[600] tracking-[0.6px]'>Dashboard</h1>
+                        <MoreHorizontal size={20} className='cursor-pointer' />
+                    </div>
+                    <DonationCOMP/>
+                </div>
+            </div>
         </div>
-      ))}
-    </div>
-  )
+    )
 }
 
-export default Donation
+export default Dashboard

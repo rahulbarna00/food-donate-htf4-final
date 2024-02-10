@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from '../../../components/donor/nav'
+import Navbar from '../../../components/ngo/nav'
 import { MoreHorizontal } from 'lucide-react'
 const Dashboard = () => {
     return (
