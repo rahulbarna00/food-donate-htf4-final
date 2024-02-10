@@ -107,6 +107,31 @@ app.post('/registerUser', async (req, res) => {
 });
 
 
+// https://ap-south-1.aws.neurelo.com/rest/users?filter={"email":email, "password":password}
+
+
+app.post('/login', async(req, res) => {
+    try {
+        const {email, password} = req.body;
+        console.log(email, password);
+        if(!email || !password){
+            return res.status(400).json({ error: 'Please fill all the fields' });
+        }else{
+            const response = await fetch(`https://ap-south-1.aws.neurelo.com/rest/users?filter={"email":${email}, "password":${password}}`);
+            if(email == response.email && password == response.password){
+                res.json({success: true});
+            }else{
+                res.json({success: false});
+            }
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+})
+
+
+
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
