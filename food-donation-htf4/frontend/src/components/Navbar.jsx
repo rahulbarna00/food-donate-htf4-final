@@ -109,9 +109,7 @@ const Navbar = () => {
         <a href="/home">Testimonials</a>
         <a href="/home">Contact</a>
         <a href="/orderpanel">My Orders</a>
-        <a href="/cart">
-          <BsCart2 className="navbar-cart-icon" />
-        </a>
+        <BsCart2 className="navbar-cart-icon" />
         {/* <button className="primary-button" >SHOP NOW</button> 
         <button className="logout" >Logout</button> */}
       </div>

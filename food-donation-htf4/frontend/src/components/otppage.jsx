@@ -21,7 +21,7 @@ const OtpPage = () => {
         otp: otp
       });
       if (response.data.success) {
-        navigate('/donor');
+        navigate('/donor/dashboard');
       } else {
         console.error('OTP verification failed');
       }

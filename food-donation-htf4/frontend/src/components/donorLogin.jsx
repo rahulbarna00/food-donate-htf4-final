@@ -12,7 +12,7 @@ const Login = () => {
             const response = await loginAPI({email,password})
             console.log(response)
             if(response.success){
-                navigate('/donor/home')
+                navigate('/donor/dashboard')
             }
         } catch (err) {
             console.error('Error:', err.message);
@@ -20,9 +20,9 @@ const Login = () => {
     };
     
     return (
-        <div className="login-container">
-            <form className="login-form">
-                <h2>Login</h2>
+        <div className="w-[100%] h-[100vh] flex justify-center items-center">
+            <form className="login-form min-w-[400px]">
+                <h2 className="text-[1.5rem] font-[500] ">Login</h2>
 
                 <div className="form-group">
                     <label htmlFor="email">Email:</label>
@@ -34,7 +34,7 @@ const Login = () => {
                     <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
 
-                <button type="button" onClick={handleLogin}>
+                <button type="button" className="bg-[#FFA732] hover:bg-[#EE9322] mb-[20px]" onClick={handleLogin}>
                     Login
                 </button>
             </form>

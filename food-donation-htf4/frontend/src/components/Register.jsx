@@ -53,7 +53,7 @@ const SignUp = () => {
   return (
     // signup page frontend
     <div className="signupform">
-      <h2>Sign Up</h2>
+      <h2 className="text-[1.5rem] font-[500] ">Sign Up</h2>
       <form onSubmit={handleSubmit}>
         <label>Email:</label>
         <input type="email" name="email" value={regForm.email} onChange={handleChange} required />
@@ -66,10 +66,10 @@ const SignUp = () => {
 
         <label>Full Name:</label>
         <input type="text" name="fullname" value={regForm.fullname} onChange={handleChange} required />
-
-        <button type="submit">Sign Up</button>
+        
+        <button type="submit" className="bg-[#FFA732] hover:bg-[#EE9322]">Sign Up</button>
       </form>
-      <h6>Already have an account? <a href="/login">Login</a></h6>
+      <h6>Already have an account? <a href="/auth/donor/login">Login</a></h6>
     </div>
   )
 }

@@ -7,6 +7,8 @@ import Cookies from 'js-cookie'
 import axios from 'axios'
 import '../css/home.css'
 import { useNavigate } from 'react-router-dom'
+import { motion } from 'framer-motion'
+import '../css/contact.css'
 
 const Contact = () => {
   const navigate = useNavigate();
@@ -66,37 +68,35 @@ const Contact = () => {
 
 
   return (
-    <div className="contact-page">
-      <div className="contact-page-wrapper">
-        <h1 className="flex text-[1rem] py-[50px]">Have a Question in Mind?</h1>
-        <h1 className="primary-heading">Let Us Help You by answering queries about this platform</h1>
-        {/* Input for email */}
-        <label>Email</label>
-        <div className="contact-form-container">
-        
-          <input
-            type="text"
-            name="email"
-            placeholder="yourmail@gmail.com"
-            value={queryForm.email}
-            onChange={handleChange}
-          />
+    <div className="w-full bg-[#F5F5F5] py-[30px] px-[50px] flex justify-center items-center">
+      <div className="w-full flex justify-center items-center flex-col gap-7">
+        <div className="w-full flex justify-center items-center flex-col">
+          <h1 className="flex text-[1.3rem] mb-[30px] opacity-[0.5] font-[550]">Have a Question in Mind?</h1>
+          <h1 className="text-center w-[600px] text-[2.6rem] font-[600] leading-[52px] text-[#4C4C4C]">Let Us Help You by answering queries about this platform</h1>
         </div>
-        <label>Comment</label>
-        {/* Input for query */}
-        <div className="contact-form-container">
-          <input
-            type="text"
-            name="comment"
-            placeholder="Enter your query"
-            value={queryForm.comment} // changed from "email" to "comment"
-            onChange={handleChange}
-          />
-        </div>
-        {/* Submit button */}
-        <button className="secondary-button" onClick={handleSubmit}>
-          Submit
-        </button>
+
+        <motion.div className="left" initial={{ x: -250, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{
+            opacity: { duration: 0.3, delay: 0.3 },
+            x: { duration: 0.8, type: "spring", delay: 0.25 },
+          }} >
+          <form className="form">
+            <div className="upp">
+              <input type="text" placeholder='Your Name' />
+              <input type="text" placeholder='Your email address' value={queryForm.email}
+                onChange={handleChange} />
+            </div>
+            <div className="down">
+              <textarea name="para" placeholder='Your Meassage to me' value={queryForm.comment}
+                onChange={handleChange} id="" cols="30" rows="10"></textarea>
+            </div>
+          </form>
+          <div className="submit" onClick={handleSubmit}>
+            <button>Send</button>
+          </div>
+        </motion.div>
 
       </div>
     </div>

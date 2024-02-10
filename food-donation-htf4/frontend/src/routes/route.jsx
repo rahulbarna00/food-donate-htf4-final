@@ -11,6 +11,14 @@ import DonorLogin from '../components/donorLogin'
 import { Dashboard } from '../components/Dashboard';
 import NGOLogin from '../components/NGOlogin'
 
+
+
+//// donor
+
+import DonorDashboard from '../pages/donor/dashboard/page'
+import DonorDonate from '../pages/donor/donate/page'
+import DonorHistory from '../pages/donor/your-history/paget'
+
 const routes = [
     {
         path: '/',
@@ -21,8 +29,16 @@ const routes = [
         element: <Register/>
     },
     {
-        path: '/donor',
-        element: <Donor/>
+        path: '/donor/dashboard',
+        element: <DonorDashboard/>
+    },
+    {
+        path:'/donor/donate',
+        element: <DonorDonate/>
+    },
+    {
+        path:'/donor/history',
+        element: <DonorHistory/>
     },
     {
         path: '/otp',
@@ -38,10 +54,6 @@ const routes = [
     },{
         path:'/auth/ngo/login',
         element:<NGOLogin/>
-    },
-    {
-        path: '/dashboard',
-        element: <Dashboard/>
     }
 ]
 export default routes;
