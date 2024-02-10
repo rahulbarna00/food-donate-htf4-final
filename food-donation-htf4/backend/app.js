@@ -196,7 +196,7 @@ app.patch('/ngoIDupdate', async (req, res) => {
     const responseData = await updatedNGO.json();
     console.log(responseData);
     res.status(200).json(responseData);
-
+    
 });
 
 
