@@ -52,8 +52,8 @@ const SignUp = () => {
         seterror("Invalid Credentials")
         setrequest(false)
       }
-
-    } catch (error) {        
+    } catch (error) {          
+      setrequest(false) 
       seterror("Server Error")
       console.error(error);
     }

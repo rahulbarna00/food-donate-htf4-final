@@ -13,6 +13,7 @@ const Login = () => {
     const [error , seterror] = useState("")
     const handleLogin = async () => {    
         seterror("")
+        setrequest(true)
         try {
             const response = await loginAPI({email,password})
             console.log(response)
@@ -43,6 +44,12 @@ const Login = () => {
                     <label htmlFor="password">Password:</label>
                     <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
+
+
+                {error.length!==0 && (
+                    <span className="pb-[10px] text-[#f44336] flex justify-center items-center gap-2 "><AlertCircle size={20} color='#f44336'/> {error}</span>
+                )}
+                
                 <button className="bg-[#FFA732] hover:bg-[#EE9322] flex justify-center items-center gap-2 mb-[20px]" disabled={request} style={request === true ? { opacity: 0.67 } : { opacity: 1 }} onClick={(e) => {
                     handleLogin()
                 }}> <ColorRing
