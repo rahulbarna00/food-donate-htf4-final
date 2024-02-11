@@ -34,6 +34,11 @@ const Home = () => {
           <button className="secondary-button" onClick={navigatetoReg}>
             Register <FiArrowRight />{" "}
           </button>
+          <button className="secondary-button mt-[10px]" onClick={(e)=>{
+            navigate("/auth/ngo/login")
+          }}>
+            LOGIN as NGO <FiArrowRight />{" "}
+          </button>
         </div>
         <div className="home-image-section" onClick={navigatetoReg}>
           <img src={homepageimg} alt="" />
