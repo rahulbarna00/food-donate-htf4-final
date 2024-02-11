@@ -15,8 +15,7 @@ This is a web application designed to facilitate food donations from donors to N
 - **Frontend**: React.js
 - **Backend**: Node.js, Express.js
 - **Database**: Neurelo Data APIs for MongoDB Database
-- **Authentication**: Vonage's 2 Factor Authentication
-
+- **Authentication and messaging**: Vonage APIs
 ## Usage
 
 1. **For Donor**:
