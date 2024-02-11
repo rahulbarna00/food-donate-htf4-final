@@ -2,8 +2,8 @@ import { NeurosNeureloAPI } from '../../utils/nerelo'
 
 const donateuser = async (formdata) =>{
     try {
-        const { foodname, donorname, phone, description } = formdata;
-        if (!foodname || !donorname || !phone || !description) {
+        const { foodname, donorname, phone, description , address } = formdata;
+        if (!foodname || !donorname || !phone || !description || !address) {
             return {error:"Please fill all the fields"}
         } else {
             const response = await fetch('https://ap-south-1.aws.neurelo.com/rest/foodDonor/__one', {
@@ -15,7 +15,8 @@ const donateuser = async (formdata) =>{
                 body: JSON.stringify({
                     foodname: foodname,
                     description: description,
-                    donorname: donorname
+                    donorname: donorname,
+                    address:address
                 })
             })
             console.log(await response.json())

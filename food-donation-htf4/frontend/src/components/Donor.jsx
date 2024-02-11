@@ -4,7 +4,6 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Location from './Location';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom'
 import donateuser from '../apis/donate/donateForm';
 
@@ -13,7 +12,8 @@ const DonationForm = () => {
     description: '',
     foodname: '',
     phone: '',
-    donorname: ''
+    donorname: '',
+    address:''
   });
   const navigate = useNavigate();
   const handleChange = (e) => {
@@ -31,10 +31,13 @@ const DonationForm = () => {
       description: donationData.description,
       foodname: donationData.foodname,
       phone: donationData.phone,
-      donorname: donationData.donorname
+      donorname: donationData.donorname,
+      address: donationData.address
     })
     if (response.error===null) {
-      navigate('/dashboard');
+      /// error
+    }else{
+       navigate("/donor/thankyou")   
     }
 
   };
@@ -79,6 +82,16 @@ const DonationForm = () => {
             label="Donor Name"
             name="donorname"
             value={donationData.donorname}
+            onChange={handleChange}
+            variant="outlined"
+          />
+           <TextField
+            className='bg-white'
+            label="Your address"
+            name="address"
+            multiline
+            rows={4}
+            value={donationData.address}
             onChange={handleChange}
             variant="outlined"
           />

@@ -18,7 +18,7 @@ import NGOLogin from '../components/NGOlogin';
 import DonorDashboard from '../pages/donor/dashboard/page'
 import DonorDonate from '../pages/donor/donate/page'
 import DonorHistory from '../pages/donor/your-history/paget'
-
+import DonorThankyou from '../pages/donor/thankyou/page'
 
 /// ngo
 
@@ -48,6 +48,10 @@ const routes = [
     {
         path:'/donor/history',
         element: <DonorHistory/>
+    },
+    {
+        path:'/donor/DonorThankyou',
+        element: <DonorThankyou/>
     },
     {
         path: '/otp',
