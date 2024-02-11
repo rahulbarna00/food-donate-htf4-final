@@ -2,9 +2,9 @@ import React, {useEffect, useState} from 'react'
 import '../css/donation.css'
 import donateGet from '../apis/donate/donationGet';
 import donationAccept from '../apis/donate/donationAccept';
-
+import { useNavigate } from 'react-router-dom'
 const DonationComp = () => {
-
+  const navigate = useNavigate()
   const [donordata, setdonordata] = useState([]);
   const [ngokaID, setngokaID] = useState("")
 
@@ -28,6 +28,8 @@ const DonationComp = () => {
     try {
         const response = await donationAccept({ objectID, ngokaID})
         console.log(response)
+        localStorage.setItem('objectID',objectID)
+        navigate('/ngo/verify')
     } catch (error) {
         console.error('Error:', error);
     }
