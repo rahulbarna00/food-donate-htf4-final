@@ -19,17 +19,17 @@ const Home = () => {
   }
   return (
     <div className="home-container overflow-x-hidden">
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="home-banner-container">
         <div className="home-bannerImage-container">
           <img src={BannerBackground} alt="" />
         </div>
         <div className="home-text-section">
           <h1 className="primary-heading">
-            Your Favourite Products Delivered Hot & Fresh
+          Feeding Hope, One Meal at a Time: Donate Food, Nourish Lives!
           </h1>
           <p className="primary-text">
-          Elevate your shopping experience with curated collections and seamless checkout on our cutting-edge ecommerce platform
+          Join our food donation platform to make a real difference in the lives of those in need. With just a few clicks, you can help ensure no one goes hungry in our community.
           </p>
           <button className="secondary-button" onClick={navigatetoReg}>
             Register <FiArrowRight />{" "}

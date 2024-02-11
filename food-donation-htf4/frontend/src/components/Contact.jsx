@@ -84,7 +84,6 @@ const Contact = () => {
           }} >
           <form className="form">
             <div className="upp">
-              <input type="text" placeholder='Your Name' />
               <input type="text" placeholder='Your email address' value={queryForm.email}
                 onChange={handleChange} />
             </div>

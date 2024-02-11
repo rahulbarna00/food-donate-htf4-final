@@ -9,6 +9,9 @@ import AboutBackgroundImage from "../assets/about-background.png";
 import { BsFillPlayCircleFill } from "react-icons/bs";
 // pat-na1-d84c8884-554b-4f26-add4-664b1f94f0e9
 const About = () => {
+  function handleVideo(){
+    window.open("https://youtu.be/GamVrr_P5XU?si=SoVsz4QXzJqKrArg");
+  }
   return (
     <div className="about-section-container">
       <div className="about-background-image-container">
@@ -20,19 +23,17 @@ const About = () => {
       <div className="about-section-text-container">
         <p className="primary-subheading">About</p>
         <h1 className="primary-heading">
-          Food Is An Important Part Of A Balanced Diet
+        Urgent. Solvable. Action.
         </h1>
         <p className="primary-text">
-          Lorem ipsum dolor sit amet consectetur. Non tincidunt magna non et
-          elit. Dolor turpis molestie dui magnis facilisis at fringilla quam.
+        Ending world hunger is not just a moral imperative, its within our grasp if we act collectively with compassion and determination.
         </p>
         <p className="primary-text">
-          Non tincidunt magna non et elit. Dolor turpis molestie dui magnis
-          facilisis at fringilla quam.
+        World hunger persists as a stark reminder of our collective obligation to ensure food security for every individual on the planet.
         </p>
         <div className="about-buttons-container">
           <button className="secondary-button">Learn More</button>
-          <button className="watch-video-button">
+          <button className="watch-video-button" onClick={handleVideo}>
             <BsFillPlayCircleFill /> Watch Video about Food hunger in India
           </button>
         </div>
