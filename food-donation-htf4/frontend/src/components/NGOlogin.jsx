@@ -3,18 +3,28 @@ import React, { useState } from "react";
 import '../css/auth.css';
 import {useNavigate} from 'react-router-dom'
 import loginAPI from '../apis/login/ngo'
+import { ColorRing } from 'react-loader-spinner'
+import { AlertCircle  } from 'lucide-react'
 const Login = () => {
     const [email, setemail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
-    const handleLogin = async () => {
+    const [request , setrequest] = useState(false)
+    const [error , seterror] = useState("")
+    const handleLogin = async () => {    
+        seterror("")
         try {
             const response = await loginAPI({email,password})
             console.log(response)
             if(response.success){
                 navigate('/ngo/dashboard')
+            }else{
+                seterror("Invalid Credentials")
+                setrequest(false)
             }
         } catch (err) {
+            seterror("Server Issue")
+            setrequest(false)
             console.error('Error:', err.message);
         }
     };
@@ -33,10 +43,18 @@ const Login = () => {
                     <label htmlFor="password">Password:</label>
                     <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
-
-                <button type="button" className="bg-[#FFA732] hover:bg-[#EE9322] mb-[20px]" onClick={handleLogin}>
-                    Login
-                </button>
+                <button className="bg-[#FFA732] hover:bg-[#EE9322] flex justify-center items-center gap-2 mb-[20px]" disabled={request} style={request === true ? { opacity: 0.67 } : { opacity: 1 }} onClick={(e) => {
+                    handleLogin()
+                }}> <ColorRing
+                        visible={request}
+                        height="30"
+                        width="30"
+                        ariaLabel="color-ring-loading"
+                        wrapperStyle={{}}
+                        wrapperClass="color-ring-wrapper"
+                        colors={['#fff', '#fff', '#fff', '#fff', '#fff']}
+                    />
+                    Login</button>
             </form>
         </div>
     );

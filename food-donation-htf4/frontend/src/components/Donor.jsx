@@ -6,15 +6,17 @@ import Box from '@mui/material/Box';
 import Location from './Location';
 import { useNavigate } from 'react-router-dom'
 import donateuser from '../apis/donate/donateForm';
-
 const DonationForm = () => {
   const [donationData, setDonationData] = useState({
     description: '',
     foodname: '',
     phone: '',
     donorname: '',
-    address:''
+    address: ''
   });
+  const [request, setrequest] = useState(false)
+  const [error, seterror] = useState("")
+
   const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -34,10 +36,10 @@ const DonationForm = () => {
       donorname: donationData.donorname,
       address: donationData.address
     })
-    if (response.error===null) {
+    if (response.error === null) {
       /// error
-    }else{
-       navigate("/donor/thankyou")   
+    } else {
+      navigate("/donor/thankyou")
     }
 
   };
@@ -52,7 +54,7 @@ const DonationForm = () => {
           margin: '0 auto', // Center the form horizontally
         }}
       >
-        <div className='w-[50%] max-h-[400px] flex flex-col gap-[1rem] bg-[#f5f5f5] py-[20px] px-[20px] rounded-[15px]'>
+        <div className='w-[50%] max-h-[500px] flex flex-col gap-[1rem] bg-[#f5f5f5] py-[20px] px-[20px] rounded-[15px]'>
           <TextField
             className='bg-white'
             label="Food Name"
@@ -85,7 +87,7 @@ const DonationForm = () => {
             onChange={handleChange}
             variant="outlined"
           />
-           <TextField
+          <TextField
             className='bg-white'
             label="Your address"
             name="address"
@@ -95,9 +97,18 @@ const DonationForm = () => {
             onChange={handleChange}
             variant="outlined"
           />
-          <Button type="submit" variant="contained" color="primary">
-            Submit
-          </Button>
+          <button className="bg-[#FFA732] hover:bg-[#EE9322] flex justify-center items-center gap-2 mb-[20px]" disabled={request} style={request === true ? { opacity: 0.67 } : { opacity: 1 }} onClick={(e) => {
+            handleSubmit()
+          }}> <ColorRing
+              visible={request}
+              height="30"
+              width="30"
+              ariaLabel="color-ring-loading"
+              wrapperStyle={{}}
+              wrapperClass="color-ring-wrapper"
+              colors={['#fff', '#fff', '#fff', '#fff', '#fff']}
+            />
+            Submit</button>
         </div>
         <Location />
       </Box>

@@ -52,10 +52,6 @@ const Navbar = () => {
             </div>
             <div className='absolute bottom-[0vh] w-[calc(100%_-_38px)] py-[5px]'>
                 <div className='w-full py-[8px] cursor-pointer rounded-[6px] flex gap-3 items-center hover:bg-[#eeefff]'>
-                    <Settings size={20} color='#636F7E' />
-                    <p className='flex items-center gap-3 text-[0.92rem] !font-[500]'>Settings</p>
-                </div>
-                <div className='w-full py-[8px] cursor-pointer rounded-[6px] flex gap-3 items-center hover:bg-[#eeefff]'>
                     <UserRound size={20} color='#636F7E' />
                     <h2 className='flex items-center gap-3 text-[0.92rem] !font-[500]'>Profile</h2>
                 </div>

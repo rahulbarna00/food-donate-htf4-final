@@ -7,6 +7,8 @@ import axios from "axios";
 import { useNavigate } from 'react-router-dom'
 import Cookies from 'js-cookie'
 import '../css/auth.css'
+import { ColorRing } from 'react-loader-spinner'
+import { AlertCircle } from 'lucide-react'
 // import toast from 'react-hot-toast';
 
 const SignUp = () => {
@@ -17,6 +19,9 @@ const SignUp = () => {
     phone: "",
     fullname: ""
   })
+
+  const [request, setrequest] = useState(false)
+  const [error, seterror] = useState("")
 
 
   function handleChange(e) {
@@ -30,19 +35,27 @@ const SignUp = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    setrequest(true)
+    seterror("")
     try {
       const response = await axios.post('http://localhost:5000/registerUser', {
-            email: regForm.email,
-            password: regForm.password,
-            phone: regForm.phone,
-            fullname: regForm.fullname
+        email: regForm.email,
+        password: regForm.password,
+        phone: regForm.phone,
+        fullname: regForm.fullname
       });
 
-      Cookies.set('RegisteredUser', response.data.data.id);
-      navigate('/otp');
+      const msg = await response.json()
+      if (msg.success) {
+        navigate('/otp');
+      } else {
+        seterror("Invalid Credentials")
+        setrequest(false)
+      }
 
-    } catch (error) {
-      console.error(error.response.data);
+    } catch (error) {        
+      seterror("Server Error")
+      console.error(error);
     }
   }
 
@@ -59,15 +72,30 @@ const SignUp = () => {
         <input type="email" name="email" value={regForm.email} onChange={handleChange} required />
 
         <label>Password:</label>
-        <input type="password" name="password" value={regForm.password} onChange={handleChange} required  />
+        <input type="password" name="password" value={regForm.password} onChange={handleChange} required />
 
         <label>Phone:</label>
-        <input type="number" name="phone" value={regForm.phone} onChange={handleChange} required/>
+        <input type="number" name="phone" value={regForm.phone} onChange={handleChange} required />
 
         <label>Full Name:</label>
         <input type="text" name="fullname" value={regForm.fullname} onChange={handleChange} required />
-        
-        <button type="submit" className="bg-[#FFA732] hover:bg-[#EE9322]">Sign Up</button>
+
+        {error.length !== 0 && (
+          <span className="pb-[10px] text-[#f44336] flex justify-center items-center gap-2 "><AlertCircle size={20} color='#f44336' /> {error}</span>
+        )}
+
+        <button className="bg-[#FFA732] hover:bg-[#EE9322] flex justify-center items-center gap-2 mb-[20px]" disabled={request} style={request === true ? { opacity: 0.67 } : { opacity: 1 }} onClick={(e) => {
+          handleSubmit()
+        }}> <ColorRing
+            visible={request}
+            height="30"
+            width="30"
+            ariaLabel="color-ring-loading"
+            wrapperStyle={{}}
+            wrapperClass="color-ring-wrapper"
+            colors={['#fff', '#fff', '#fff', '#fff', '#fff']}
+          />
+          Sign up</button>
       </form>
       <h6>Already have an account? <a href="/auth/donor/login">Login</a></h6>
     </div>
