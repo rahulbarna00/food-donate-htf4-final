@@ -50,7 +50,7 @@ const routes = [
         element: <DonorHistory/>
     },
     {
-        path:'/donor/DonorThankyou',
+        path:'/donor/thankyou',
         element: <DonorThankyou/>
     },
     {
